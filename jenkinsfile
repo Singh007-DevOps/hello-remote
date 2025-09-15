@@ -15,12 +15,11 @@ pipeline {
                         
                     }
                 }
-            }
-            stage('Remote SSH Execution') {
                 steps {
                     sshScript remote: remote, script: "patching.sh"
                 }
-            }    
+            }
+               
         
         }
 }        
