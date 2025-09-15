@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+               sh pre-checks.sh
+            }
+        }
+        stage('Test') {
+            steps {
+              sh patching.sh
+            }
+        }
+        stage('post patching') {
+            steps {
+                sh post-checks.sh
+            }
+        }
+    }
+    post {
+        always {
+            echo "Patching has been completed successfully"
+        }
+    }
+}
