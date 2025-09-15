@@ -11,10 +11,16 @@ pipeline {
                             password: 'Admin@123',
                             allowAnyHosts: true
                         ]
-                        sshCommand remote: remote, command: "hostname && uptime && reboot"
+                        sshCommand remote: remote, command: "hostname && uptime"
+                        
                     }
+                }
+            }
+            stage('Remote SSH Execution') {
+                steps {
+                    sshScript remote: remote, script: "patching.sh"
                 }
             }    
         
         }
-}       
+}        
