@@ -1,1 +1,1 @@
-sh pre-check.sh > /tmp/prechecks.txt
+sh pre-checks.sh > /tmp/prechecks.txt
