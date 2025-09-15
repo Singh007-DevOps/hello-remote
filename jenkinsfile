@@ -1,5 +1,17 @@
 pipeline {
-    agent 192.168.224.134
+    agent any
+    node {
+  def remote = [:]
+  remote.name = 'jfrog-artifactory'
+  remote.host = 'jfrog-artifactory.local'
+  remote.user = 'saket'
+  remote.password = 'Admin@123'
+  remote.allowAnyHosts = true
+  stage('Remote SSH') {
+    sshCommand remote: remote, command: "ls -lrt"
+    sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
+  }
+}
     stages {
         stage('Build') {
             steps {
