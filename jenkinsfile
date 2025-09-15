@@ -11,7 +11,7 @@ pipeline {
                             password: 'Admin@123',
                             allowAnyHosts: true
                         ]
-                        sshCommand remote: remote, command: "hostname && uptime && sh patching.sh && reboot"
+                        sshCommand remote: remote, command: "hostname && uptime && reboot"
                     }
                 }
             }    
