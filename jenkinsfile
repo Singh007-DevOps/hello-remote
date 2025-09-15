@@ -1,20 +1,21 @@
 pipeline {
     agent any
         stages {
-        stage('Build') {
-            steps {
-                script {
-                    sh """
-                    #!/bin/bash
-                    sshpass -p "Admin@123" ssh root@192.168.224.134 << EOF
-                    sh pre-checks.sh
-                    exit 0
-                    << EOF
-                    """
+            stage('Remote SSH Execution') {
+                steps {
+                    script {
+                        def remote = [
+                            name: 'RemoteServer',
+                            host: '192.168.224.134',
+                            user: 'root',
+                            password: 'Admin@123',
+                            allowAnyHosts: true
+                        ]
+                        sshCommand remote: remote, command: "hostname && uptime"
+                    }
                 }
-               
-            }
-        }
+            }    
+        
         stage('Test') {
             steps {
               sh patching.sh
