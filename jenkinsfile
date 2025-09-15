@@ -6,7 +6,7 @@ pipeline {
                 script {
                     sh """
                     #!/bin/bash
-                    ssh -i /root/.ssh/id_rsa.pub root@192.168.224.134 << EOF
+                    ssh -i /tmp/id_rsa.pub root@192.168.224.134 << EOF
                     sh pre-checks.sh
                     exit 0
                     << EOF
