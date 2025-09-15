@@ -1,10 +1,18 @@
 pipeline {
     agent any
-    node('jfrog-artifactory.local') {
         stages {
         stage('Build') {
             steps {
-               sh pre-checks.sh
+                script {
+                    sh """
+                    #!/bin/bash
+                    ssh -i /root/.ssh/id_rsa.pub root@192.168.224.134 << EOF
+                    sh pre-checks.sh
+                    exit 0
+                    << EOF
+                    """
+                }
+               
             }
         }
         stage('Test') {
@@ -23,5 +31,4 @@ pipeline {
             echo "Patching has been completed successfully"
         }
     }
-}
 }
