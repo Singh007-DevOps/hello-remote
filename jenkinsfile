@@ -12,8 +12,8 @@ pipeline {
                             allowAnyHosts: true
                         ]
                         sshCommand remote: remote, command: "hostname && uptime"
-                        sshScript remote: remote, script: "pre-checks.sh > prechecks.txt"
-                        sshScript remote: remote, script: "patching.sh > postchecks.txt"
+                        sshScript remote: remote, script: "pre-checks.sh"
+                        sshScript remote: remote, script: "precheckcollect.sh"                        
                         sshScript remote: remote, script: "patching.sh"
                     }
                 }
