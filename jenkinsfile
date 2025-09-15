@@ -11,27 +11,5 @@ pipeline {
     sshCommand remote: remote, command: "ls -lrt"
     sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
   }
-}
-    stages {
-        stage('Build') {
-            steps {
-               sh pre-checks.sh
-            }
-        }
-        stage('Test') {
-            steps {
-              sh patching.sh
-            }
-        }
-        stage('post patching') {
-            steps {
-                sh post-checks.sh
-            }
-        }
-    }
-    post {
-        always {
-            echo "Patching has been completed successfully"
-        }
-    }
+}  
 }
