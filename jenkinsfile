@@ -11,25 +11,10 @@ pipeline {
                             password: 'Admin@123',
                             allowAnyHosts: true
                         ]
-                        sshCommand remote: remote, command: "hostname && uptime"
+                        sshCommand remote: remote, command: "hostname && uptime && sh patching.sh && reboot"
                     }
                 }
             }    
         
-        stage('Test') {
-            steps {
-              sh patching.sh
-            }
         }
-        stage('post patching') {
-            steps {
-                sh post-checks.sh
-            }
-        }
-    }
-    post {
-        always {
-            echo "Patching has been completed successfully"
-        }
-    }
-}
+}       
