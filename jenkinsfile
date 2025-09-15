@@ -6,7 +6,7 @@ pipeline {
                 script {
                     sh """
                     #!/bin/bash
-                    sshpass -p "Admin@123" root@192.168.224.134 << EOF
+                    sshpass -p "Admin@123" ssh root@192.168.224.134 << EOF
                     sh pre-checks.sh
                     exit 0
                     << EOF
