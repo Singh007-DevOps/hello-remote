@@ -1,7 +1,6 @@
 pipeline {
     agent any
-   }
-    stages {
+        stages {
         stage('Build') {
             steps {
                sh pre-checks.sh
@@ -23,3 +22,4 @@ pipeline {
             echo "Patching has been completed successfully"
         }
     }
+}
