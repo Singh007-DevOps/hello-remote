@@ -12,12 +12,10 @@ pipeline {
                             allowAnyHosts: true
                         ]
                         sshCommand remote: remote, command: "hostname && uptime"
-                        
+                        sshScript remote: remote, script: "patching.sh"
                     }
                 }
-                steps {
-                    sshScript remote: remote, script: "patching.sh"
-                }
+                
             }
                
         
